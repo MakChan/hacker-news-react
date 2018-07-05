@@ -23,36 +23,76 @@ const list = [
 const isSearched = searchTerm => item =>
   item.title.toLowerCase().includes(searchTerm.toLowerCase());
 
+const PATH_BASE = 'https://hacker-news.firebaseio.com/v0/';
+// const PATH_SEARCH = '/search';
+const ITEM_ID = '';
+const REQUEST_TYPE = '';
+const DEFAULT_QUERY = '.json?print=pretty';
+
+const item_url = `${PATH_BASE}${REQUEST_TYPE}${ITEM_ID}${DEFAULT_QUERY}`;
+
+const stories_url = `${PATH_BASE}${REQUEST_TYPE}${DEFAULT_QUERY}`;
+
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      list,
+      result: null,
+      itemStories: [],
       searchTerm: ""
     };
-    this.onDismiss = this.onDismiss.bind(this);
     this.onSearchChange = this.onSearchChange.bind(this);
+    this.setTopItemStories = this.setTopItemStories.bind(this);  
+    this.findItems = this.findItems.bind(this);    
   }
 
-  onDismiss(id) {
-    const isNotId = item => item.objectID !== id;
-    const updatedList = this.state.list.filter(isNotId);
-    this.setState({ list: updatedList });
+  setTopItemStories(result) {
+    this.setState(prevState => ({
+      itemStories: [...prevState.itemStories, result]
+    }))    
+  }
+
+  findItems(result) {
+    const request_type = "item/"
+
+    for (let i = 0; i < 20; i++) {
+
+      fetch(`${PATH_BASE}${request_type}${result[i]}${DEFAULT_QUERY}`)
+      .then(response => response.json())
+      .then(result => this.setTopItemStories(result))
+      .catch(error => error); 
+
+    }
   }
 
   onSearchChange(e) {
     this.setState({ searchTerm: e.target.value });
   }
+
+  componentDidMount() {
+    const request_type = "topstories"
+    fetch(`${PATH_BASE}${request_type}${DEFAULT_QUERY}`)
+      .then(response => response.json())
+      .then(result => this.findItems(result))
+      .catch(error => error);
+  }
+    
+    
+
   render() {
-    const { searchTerm, list } = this.state;
+    console.log(this.state);
+    const { searchTerm, itemStories } = this.state;
+
+    if (!itemStories) { return null; }
+
     return (
-      <div className="Page">
-      <div className="interactions">
+      <div className="container">
+      <div>
         <Search value={searchTerm} onChange={this.onSearchChange}>
           Search
         </Search>
         </div>
-        <Table list={list} pattern={searchTerm} onDismiss={this.onDismiss} />
+        <Table list={itemStories} pattern={searchTerm}/>
       </div>
     );
   }
@@ -64,19 +104,18 @@ const Search = ({ value, onChange, children }) => (
   </form>
 );
 
-const Table = ({ list, pattern, onDismiss }) => (
+const Table = ({ list, pattern }) => (
   <div>
     {list.filter(isSearched(pattern)).map(item => (
-      <div key={item.objectID}>
+      <div key={item.objectID} className="mt-2">
         <span>
           <a href={item.url}>{item.title}</a>
         </span>
-        <span>{item.author}</span>
-        <span>{item.num_comments}</span>
-        <span>{item.points}</span>
-        <span>
-          <Button onClick={() => onDismiss(item.objectID)}>Dismiss</Button>
-        </span>
+        <div>
+          <span>{item.by}</span>
+          <span>{item.descendants}</span>
+          <span>{item.score}</span>
+        </div>
       </div>
     ))}
   </div>
