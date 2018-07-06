@@ -1,76 +1,30 @@
-import React, { Component } from "react";
+import React from "react";
+import HomeView from "./Views/HomeView.jsx"
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect
+} from "react-router-dom";
+
+
 import "./App.css";
-import Api from "./api";
 
-import Timestamp from "react-timestamp";
+const App = () => (
+    <Router>
+      <Switch>
+        <Route path="/" exact component={HomeView} />
+        <Redirect from="/top" to="/" />
+        <Route component={NoMatch} />
+      </Switch>
+    </Router>
+)
 
-function fetchSingleStory(id) {
-  return new Promise(resolve => {
-    Api.fetch(`/item/${id}`, {
-      then(data) {
-        resolve(data);
-      }
-    });
-  });
-}
-
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      itemStories: []
-    };
-    this.fetchTopStories = this.fetchTopStories.bind(this);
-  }
-
-  fetchTopStories(storyIds) {
-    let actions = storyIds.slice(0, 30).map(fetchSingleStory);
-    let results = Promise.all(actions);
-    results.then(itemStories => this.setState({ itemStories }));
-  }
-
-  componentDidMount() {
-    Api.fetch(`/topstories`, {
-      context: this,
-      then(storyIds) {
-        this.fetchTopStories(storyIds);
-      }
-    });
-  }
-
-  render() {
-    console.log(this.state);
-    let { itemStories } = this.state;
-
-    if (!itemStories) {
-      return null;
-    }
-
-    return (
-      <div className="container">
-        {itemStories ? <Table list={itemStories} /> : null}
-      </div>
-    );
-  }
-}
-
-const Table = ({ list }) => (
+const NoMatch = ({ location }) => (
   <div>
-    {list.map(item => (
-      <div key={item.id} className="m-4 p-2 bg-gradient-light">
-        <span>
-          <a href={item.url}>{item.title}</a>
-        </span>
-        <div className="small">
-          <span> {item.score} points </span>
-          <span> by {item.by} </span>
-          <span>
-            <Timestamp time={item.time} />  | 
-          </span>
-          <span> {item.descendants} comments</span>
-        </div>
-      </div>
-    ))}
+    <h3>
+      No match for <code>{location.pathname}</code>
+    </h3>
   </div>
 );
 
