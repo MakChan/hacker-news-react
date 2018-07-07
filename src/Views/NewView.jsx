@@ -2,10 +2,10 @@ import React from "react";
 import Stories from "../Components/Stories.jsx"
 import Navbar from "../Components/Navbar.jsx"
 
-const BestView = () =>
+const TopView = () =>
     <div>  
         <Navbar></Navbar>
-        <Stories storyType="best"></Stories>
+        <Stories storyType="new"></Stories>
     </div>
 
-export default BestView;
+export default TopView;

@@ -6355,12 +6355,22 @@ a.text-dark:hover, a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6; } }
 
-html, body, #root, .container {
+html,
+body,
+#root,
+.container {
   height: 100%; }
 
 body {
   background: #f0e9ff;
   font-family: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+
+nav {
+  height: 56px; }
+
+.container {
+  top: 56px;
+  position: relative; }
 
 a {
   color: #5500ce; }
@@ -6399,3 +6409,22 @@ a {
     animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); }
   100% {
     transform: rotate(1800deg); } }
+
+@media (max-width: 991.98px) {
+  .offcanvas-collapse {
+    position: fixed;
+    top: 56px;
+    bottom: 0;
+    left: 100%;
+    width: 100%;
+    padding-right: 1rem;
+    padding-left: 1rem;
+    overflow-y: auto;
+    visibility: hidden;
+    background-color: #343a40;
+    transition-timing-function: ease-in-out;
+    transition-duration: .3s;
+    transition-property: left, visibility; }
+  .offcanvas-collapse.open {
+    left: 0;
+    visibility: visible; } }

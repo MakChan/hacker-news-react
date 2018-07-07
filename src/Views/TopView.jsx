@@ -1,7 +1,11 @@
 import React from "react";
 import Stories from "../Components/Stories.jsx"
+import Navbar from "../Components/Navbar.jsx"
 
-const TopView = () => 
-  <Stories storyType="topstories"></Stories>
+const TopView = () =>
+    <div>  
+        <Navbar></Navbar>
+        <Stories storyType="top"></Stories>
+    </div>
 
 export default TopView;

@@ -1,10 +1,10 @@
 import React from "react";
 import TopView from "./Views/TopView.jsx"
-import NewestView from "./Views/NewestView.jsx"
 import BestView from "./Views/BestView.jsx"
 import AskView from "./Views/AskView.jsx"
 import ShowView from "./Views/ShowView.jsx"
 import JobsView from "./Views/JobsView.jsx"
+import NewView from "./Views/NewView.jsx"
 
 import {
   BrowserRouter as Router,
@@ -18,13 +18,13 @@ import "./App.css";
 const App = () => (
     <Router>
       <Switch>
-        <Route path="/" exact component={TopView} />
-        <Route path="/newest" component={NewestView} />
+        <Route path="/top" component={TopView} />
+        <Route path="/new" component={NewView} />
         <Route path="/best" component={BestView} />
         <Route path="/ask" component={AskView} />
-        <Route path="/show" component={ShowView} />
+        <Route ath="/show" component={ShowView} />>
         <Route path="/jobs" component={JobsView} />
-        <Redirect from="/top" to="/" />
+        <Redirect exact from="/" to="/top" />
         <Route component={NoMatch} />
       </Switch>
     </Router>

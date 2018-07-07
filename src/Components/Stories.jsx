@@ -25,7 +25,7 @@ class Stories extends Component {
   componentDidMount() {
     this.setState({ isLoading: true });
     
-    Api.fetch(`/${this.props.storyType}`, {
+    Api.fetch(`/${this.props.storyType}stories`, {
       context: this,
       then(storyIds) {
         this.fetchTopStories(storyIds);
@@ -41,9 +41,9 @@ class Stories extends Component {
     }
 
     return (
-      <div className="container">
-        { isLoading ? <Loading /> : <Table list={itemStories} /> }
-      </div>
+        <div className="container">
+          { isLoading ? <Loading /> : <Table list={itemStories} /> }
+        </div>
     );
   }
 }
