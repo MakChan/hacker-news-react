@@ -3,7 +3,7 @@ import Api from "../api";
 import Loading from "../Components/Loading.jsx"
 import Timestamp from "react-timestamp";
 
-class HomeView extends Component {
+class Stories extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -24,7 +24,8 @@ class HomeView extends Component {
 
   componentDidMount() {
     this.setState({ isLoading: true });
-    Api.fetch(`/topstories`, {
+    
+    Api.fetch(`/${this.props.storyType}`, {
       context: this,
       then(storyIds) {
         this.fetchTopStories(storyIds);
@@ -79,4 +80,4 @@ const Table = ({ list }) => (
   </div>
 );
 
-export default HomeView;
+export default Stories;
