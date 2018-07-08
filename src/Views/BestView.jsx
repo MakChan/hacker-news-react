@@ -4,7 +4,7 @@ import Navbar from "../Components/Navbar.jsx"
 
 const BestView = () =>
     <div>  
-        <Navbar></Navbar>
+        <Navbar active="best"></Navbar>
         <Stories storyType="best"></Stories>
     </div>
 

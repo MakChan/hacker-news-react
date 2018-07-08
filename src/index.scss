@@ -11,25 +11,22 @@ body,
   height: 100%
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   background: #f0e9ff;
   font-family: $font-family-monospace;
 }
 
-nav {
-  height: 56px;
-}
-.container {
-  top: 56px;
-  position: relative;
-}
 a {
   color: #5500ce;
   &:hover {
     color: #44009d
   }
 }
-
 
 .loader-wrapper {
   top: 50%;
@@ -57,6 +54,47 @@ a {
   animation: loader 1.2s infinite;
 }
 
+.nav-scroller {
+  position: relative;
+  z-index: 2;
+  height: 2.75rem;
+  overflow-y: hidden;
+}
+
+.nav-scroller .nav {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  padding-bottom: 1rem;
+  margin-top: -1px;
+  overflow-x: auto;
+  color: rgba(255, 255, 255, .75);
+  text-align: center;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nav-underline .nav-link {
+  padding-top: .75rem;
+  padding-bottom: .75rem;
+  font-size: .875rem;
+  color: #6c757d;
+}
+
+.nav-underline .nav-link:hover {
+  color: #007bff;
+}
+
+.nav-underline .active {
+  font-weight: 500;
+  color: #5500ce;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
 @keyframes loader {
   0% {
     transform: rotate(0);
@@ -68,27 +106,5 @@ a {
   }
   100% {
     transform: rotate(1800deg);
-  }
-}
-
-@media (max-width: 991.98px) {
-  .offcanvas-collapse {
-    position: fixed;
-    top: 56px;
-    bottom: 0;
-    left: 100%;
-    width: 100%;
-    padding-right: 1rem;
-    padding-left: 1rem;
-    overflow-y: auto;
-    visibility: hidden;
-    background-color: #343a40;
-    transition-timing-function: ease-in-out;
-    transition-duration: .3s;
-    transition-property: left, visibility;
-  }
-  .offcanvas-collapse.open {
-    left: 0;
-    visibility: visible;
   }
 }

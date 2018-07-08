@@ -18,13 +18,13 @@ import "./App.css";
 const App = () => (
     <Router>
       <Switch>
-        <Route path="/top" component={TopView} />
+        <Route exact path="/" component={TopView} />
         <Route path="/new" component={NewView} />
         <Route path="/best" component={BestView} />
         <Route path="/ask" component={AskView} />
-        <Route ath="/show" component={ShowView} />>
+        <Route path="/show" component={ShowView} />>
         <Route path="/jobs" component={JobsView} />
-        <Redirect exact from="/" to="/top" />
+        <Redirect exact from="/top" to="/" />
         <Route component={NoMatch} />
       </Switch>
     </Router>

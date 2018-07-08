@@ -4,7 +4,7 @@ import Navbar from "../Components/Navbar.jsx"
 
 const TopView = () =>
     <div>  
-        <Navbar></Navbar>
+        <Navbar active="top"></Navbar>
         <Stories storyType="top"></Stories>
     </div>
 
