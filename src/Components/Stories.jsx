@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Api from "../api";
-import Loading from "../Components/Loading.jsx"
-import Timestamp from "react-timestamp";
+import Loading from "../Components/Loading.jsx";
+import StoryList from "./StoryList";
+import { withTheme } from '../Utils/theme-context';
 
 class Stories extends Component {
   constructor(props) {
@@ -33,7 +34,9 @@ class Stories extends Component {
     });
   }
 
-  render() {
+  render() {   
+    
+    const theme = this.props.theme.theme;
     let { itemStories, isLoading } = this.state;
 
     if (!itemStories) {
@@ -41,8 +44,8 @@ class Stories extends Component {
     }
 
     return (
-        <div className="container">
-          { isLoading ? <Loading /> : <Table list={itemStories} /> }
+        <div className="container pt-4" style={{ background: theme.background }}>
+          { isLoading ? <Loading /> : <StoryList list={itemStories} /> }
         </div>
     );
   }
@@ -60,24 +63,6 @@ function fetchSingleStory(id) {
 }
 
 
-const Table = ({ list }) => (
-  <div>
-    {list.map(item => (
-      <div key={item.id} className="m-4 p-3 rounded border border-light bg-gradient-light">
-        <span>
-          <a href={item.url}>{item.title}</a>
-        </span>
-        <div className="small">
-          <span> {item.score} points </span>
-          <span> by {item.by} </span>
-          <span>
-            <Timestamp time={item.time} />  | 
-          </span>
-          <span> {item.descendants} comments</span>
-        </div>
-      </div>
-    ))}
-  </div>
-);
 
-export default Stories;
+
+export default withTheme(Stories);

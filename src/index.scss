@@ -17,16 +17,16 @@ body {
 }
 
 body {
-  background: #f0e9ff;
   font-family: $font-family-monospace;
 }
 
-a {
-  color: #5500ce;
+.container a {
   &:hover {
     color: #44009d
   }
 }
+
+// Loader
 
 .loader-wrapper {
   top: 50%;
@@ -53,6 +53,8 @@ a {
   border-color: #000 transparent #000 transparent;
   animation: loader 1.2s infinite;
 }
+
+// Navbar
 
 .nav-scroller {
   position: relative;
@@ -94,6 +96,65 @@ a {
 .box-shadow {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
 }
+
+
+// Toogle Button
+
+div.button {
+  margin-top: .5rem;
+	height: 30px; width: 100px;
+  position: absolute;
+  right: 10px;
+	background: #25272a;
+	border-radius: 30px;
+		.toggle {
+			svg {
+				opacity: 1;
+				transform: translate(-50%, -50%);
+				transition: opacity 200ms ease-in-out, transform 160ms ease-in-out;
+			}
+		}
+	
+	&.active {
+		background: #eeeeee;
+		.toggle {
+			background: #25272a;
+			transform: translate(60px, -15%);
+			transition: background 240ms ease-in-out, transform 240ms ease-in-out;	
+			svg {
+				transform: translate(-36%, -50%) rotatez(180deg);
+				transition: opacity 200ms ease-in-out, transform 160ms ease-in-out;	
+			}
+		}
+		&:hover {
+			.toggle {
+				svg {
+					transform: translate(-46%, -50%) rotatez(180deg); 
+					transition: opacity 200ms ease-in-out, transform 160ms ease-in-out;	
+				}
+			}
+		}
+	}
+}
+
+.toggle {
+	height: 40px; width: 40px;
+  // position: absolute; top: 50%; 
+  transform: translate(0, -15%);
+  background: #141518;
+  display: block;
+	border-radius: 60px;
+	box-shadow: 0px 4px 4px rgba(13,13,13,.3);
+	transition: background 240ms ease-in-out, transform 240ms ease-in-out;
+	svg {
+		width: 40%;
+		position: absolute; top: 50%; left: 48%; transform: translate(-60%, -50%);
+		opacity: 0;
+		transition: opacity 200ms ease-in-out, transform 160ms ease-in-out;
+	}
+}
+
+// Keyframes
 
 @keyframes loader {
   0% {
