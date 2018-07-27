@@ -14,7 +14,9 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-router-dom": "^4.3.1",
+    "react-router-transition": "^1.2.1",
     "react-scripts": "1.1.4",
+    "react-switch": "^3.0.4",
     "react-timestamp": "^4.4.0"
   },
   "scripts": {

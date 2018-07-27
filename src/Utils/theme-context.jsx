@@ -4,6 +4,7 @@ export const themes = {
   light: {
     active: "",
     color: "#000",
+    secondaryColor: "#000",
     storyColor: "#000",
     linkColor: "#5500ce",
     navBackground: "#eeeeee",
@@ -13,6 +14,7 @@ export const themes = {
   dark: {
     active: "active",
     color: "#fff",
+    secondaryColor: "#bbbbbb",
     storyColor: "#bbb",
     linkColor: "#fff",
     navBackground: "#222222",

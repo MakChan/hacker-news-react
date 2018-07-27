@@ -44,9 +44,11 @@ class Stories extends Component {
     }
 
     return (
-        <div className="container pt-4" style={{ background: theme.background }}>
+      <div className="stories" style={{ background: theme.background }}>
+        <div className="container pt-4">
           { isLoading ? <Loading /> : <StoryList list={itemStories} /> }
         </div>
+      </div>
     );
   }
 }
