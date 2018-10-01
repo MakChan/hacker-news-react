@@ -3,7 +3,7 @@ import Timestamp from "react-timestamp";
 import { withTheme } from '../Utils/theme-context';
 
 const StoryList = ({theme, list }) => (
-  <div>
+  <div className="pt-4">
     {list.map(item => (
       <div
         key={item.id}
@@ -17,9 +17,13 @@ const StoryList = ({theme, list }) => (
           <span> {item.score} points </span>
           <span> by {item.by} </span>
           <span>
-            <Timestamp time={item.time} /> |
+            <Timestamp time={item.time} /> 
           </span>
-          <span> {item.descendants} comments</span>
+          <span> |{' '}
+            <a href={"https://news.ycombinator.com/item?id="+item.id} 
+            style={{ color: theme.theme.storyColor}}>{item.descendants} comments</a>
+          </span>
+          
         </div>
       </div>
     ))}

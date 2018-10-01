@@ -7,14 +7,14 @@ import JobsView from "./Views/JobsView.jsx"
 import NewView from "./Views/NewView.jsx"
 import {ThemeContext, themes} from './Utils/theme-context';
 
+import './App.scss';
+
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   Redirect
 } from "react-router-dom";
-
-import "./App.css";
 
 class App extends Component {
   constructor(props) {
@@ -30,7 +30,7 @@ class App extends Component {
     };
 
     this.state = {
-      theme: themes.light,
+      theme: themes.dark,
       toggleTheme: this.toggleTheme,
     };
   }

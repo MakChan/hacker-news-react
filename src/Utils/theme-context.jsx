@@ -8,8 +8,8 @@ export const themes = {
     storyColor: "#000",
     linkColor: "#5500ce",
     navBackground: "#eeeeee",
-    storyBackground: "#f9fafb",
-    background: "#f0e9ff",
+    storyBackground: "#f9f4ff",
+    background: "#fff",
   },
   dark: {
     active: "active",
